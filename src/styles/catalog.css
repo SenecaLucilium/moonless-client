@@ -1,0 +1,10 @@
+@media only screen and (min-width: 993px) {
+    .Catalog {
+        display: flex;
+        flex-wrap: wrap;
+    }
+    
+    .CatalogList {
+        flex: 2;
+    }
+}

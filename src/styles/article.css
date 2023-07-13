@@ -1,0 +1,48 @@
+.article-page {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.meta-info, .article-content {
+    border-radius: 8px;
+    background-color: #cfdde0;
+    padding: 20px;
+}
+
+.post-card-tags span {
+    display: inline-block;
+    background-color: rgb(198, 226, 43);
+    color: black;
+    padding: 5px 10px;
+    margin-right: 10px;
+    border-radius: 4px;
+}
+
+.article-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-top: 20px;
+}
+
+.article-author-date {
+    margin-top: 10px;
+}
+
+.article-author {
+    margin-right: 20px;
+    font-weight: bold;
+}
+
+.article-content {
+    margin-top: 20px;
+}
+
+.article-content img {
+    display: block;
+    margin: 0 auto;
+    max-width: 100%;
+    height: auto;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}

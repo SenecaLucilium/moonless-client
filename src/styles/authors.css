@@ -1,0 +1,86 @@
+.author-message {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #cfdde0;
+    padding: 10px;
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+.author-list {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 10px;
+}
+  
+.author-card {
+    flex-basis: calc(20% - 10px);
+    margin-bottom: 10px;
+    margin-top: 10px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    text-align: center;
+    background-color: #cfdde0;
+}
+  
+.author-avatar {
+    width: 100px;
+    height: 100px;
+    border-radius: 30%;
+    object-fit: cover;
+    margin-bottom: 10px;
+}
+  
+.author-name {
+    margin-bottom: 10px;
+}
+  
+.author-name a {
+    font-size: 16px;
+    font-weight: bold;
+    color: #333;
+    text-decoration: none;
+}
+  
+.author-name a:hover {
+    text-decoration: underline;
+}
+  
+.author-icons {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+  
+.author-icons a {
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    margin: 0 5px;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+  
+.boosty-icon {
+    background-image: url('./boosty-icon.png');
+}
+  
+.telegram-icon {
+    background-image: url('./telegram-icon.png');
+}
+  
+.author-links a {
+    display: block;
+    margin-bottom: 5px;
+}
+  
+@media screen and (max-width: 992px) {
+    .author-card {
+        flex-basis: calc(45% - 10px);
+    }
+    .author-list {
+        justify-content: space-around;
+    }
+}
+  

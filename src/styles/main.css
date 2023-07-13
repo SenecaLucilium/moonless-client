@@ -1,0 +1,16 @@
+@media only screen and (max-width: 992px) {
+    .main-part {
+        width: 100%;
+    }
+}
+
+@media only screen and (min-width: 993px) {
+    .main-part {
+        width: 50%;
+    }
+}
+
+.main-part {
+    margin: 0 auto;
+    padding-top: 10px;
+}
