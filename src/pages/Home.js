@@ -7,9 +7,16 @@ export default function Home () {
     const [ meta, setMeta ] = useState (null);
 
     useEffect (() => {
-        fetch ("/home").then (response => response.json()).then ( (data) => {
-            setMeta (data);
-        })
+        try {
+            // fetch ("/").then ( (response) => { console.log (response) } );
+            fetch ("/home").then (response => response.json()).then ( (data) => {
+                setMeta (data);
+            })
+        }
+        catch (e) {
+            console.log (e);
+        }
+        
     }, []);
 
     if (meta == null) return null;
