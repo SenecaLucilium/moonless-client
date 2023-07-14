@@ -11,7 +11,7 @@ export default function Article (props) {
     const [ content, setContent ] = useState (null);
 
     useEffect ( () => {
-        fetch ("http://localhost:5000/article/" + id).then ( (response) => (response.json()) ).then ( (jsonRes) => {
+        fetch ("http://api.moonless.space/article/" + id).then ( (response) => (response.json()) ).then ( (jsonRes) => {
             setMeta (jsonRes.meta);
             setContent (jsonRes.content);
         }).catch ( (err) => {

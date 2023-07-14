@@ -6,7 +6,7 @@ export default function Authors () {
     const [ info, setInfo ] = useState (null);
 
     useEffect (() => {
-        fetch ("http://localhost:5000/authors").then (response => response.json()).then ( (data) => {
+        fetch ("http://api.moonless.space/authors").then (response => response.json()).then ( (data) => {
             setInfo (data);
         })
     }, []);
