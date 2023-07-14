@@ -6,7 +6,7 @@ export default function Header () {
             <div class="headerImage"></div>
             <nav id="navbar">
                 <ul>
-                    <li><a href="/home">Безлуние</a></li>
+                    <li><a href="/">Безлуние</a></li>
                     <li><a href="/catalog">Каталог</a></li>
                     <li><a href="/authors">Авторы</a></li>
                 </ul>
