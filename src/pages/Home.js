@@ -9,7 +9,7 @@ export default function Home () {
     useEffect (() => {
         try {
             // fetch ("/").then ( (response) => { console.log (response) } );
-            fetch ("/home").then (response => response.json()).then ( (data) => {
+            fetch ("http://localhost:5000/home").then (response => response.json()).then ( (data) => {
                 setMeta (data);
             })
         }

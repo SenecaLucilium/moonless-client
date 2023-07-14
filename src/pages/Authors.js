@@ -6,7 +6,7 @@ export default function Authors () {
     const [ info, setInfo ] = useState (null);
 
     useEffect (() => {
-        fetch ("/authors").then (response => response.json()).then ( (data) => {
+        fetch ("http://localhost:5000/authors").then (response => response.json()).then ( (data) => {
             setInfo (data);
         })
     }, []);

@@ -40,7 +40,7 @@ class Catalog extends Component {
 
     componentDidMount () {
         try{
-            fetch ("/catalog").then (response => response.json()).then ( (data) => {
+            fetch ("http://localhost:5000/catalog").then (response => response.json()).then ( (data) => {
                 this.setState (this.fetchFilter (data));
             })
         }
