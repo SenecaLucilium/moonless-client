@@ -16,7 +16,7 @@ class Author extends Component {
 
     render () {
         if (this.props === null) return null;
-        const authorLink = "http://localhost:3000/catalog?sort=up&author=" + this.state.id;
+        const authorLink = "http://www.moonless.space/catalog?sort=up&author=" + this.state.id;
 
         let otherLinks = [];
         for (const link of this.state.otherLinks) {

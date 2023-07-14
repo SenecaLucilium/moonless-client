@@ -1,0 +1,8 @@
+.nopage-message {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #cfdde0;
+    padding: 10px;
+    font-size: 16px;
+    margin-bottom: 10px;
+}

@@ -54,7 +54,7 @@ class Filter extends Component {
     }
 
     applyFilters () {
-        let filterURL = new URL ("http://localhost:3000/catalog");
+        let filterURL = new URL ("http://www.moonless.space/catalog");
         
         if (this.state.reverse) filterURL.searchParams.append ("sort", "down");
         else filterURL.searchParams.append ("sort", "up");

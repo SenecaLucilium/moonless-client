@@ -1,6 +1,8 @@
+import "../styles/nopage.css";
+
 export default function Home () {
     return (
-        <div>
+        <div class='nopage-message'>
             <p>Error 404</p>
         </div>
     )

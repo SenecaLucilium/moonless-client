@@ -9,7 +9,7 @@ export default function Home () {
     useEffect (() => {
         try {
             // fetch ("/").then ( (response) => { console.log (response) } );
-            fetch ("http://api.moonless.space/home").then (response => response.json()).then ( (data) => {
+            fetch ("http://api.moonless.space").then (response => response.json()).then ( (data) => {
                 setMeta (data);
             })
         }

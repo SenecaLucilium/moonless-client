@@ -4,14 +4,12 @@ import "../styles/post.css"
 function Post (props) {
     if (props.meta === undefined) return null;
 
-    const articleLink = 'http://localhost:3000/article/' + props.meta.id;
+    const articleLink = 'http://www.moonless.space/article/' + props.meta.id;
 
     let tagsList = []
     for (const tag of props.meta.tags) {
         tagsList.push (<span>{tag}</span>);
     }
-
-    console.log (props.meta.realName);
 
     return (
         <div class="post-card">

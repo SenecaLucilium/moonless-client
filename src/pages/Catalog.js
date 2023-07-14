@@ -95,8 +95,6 @@ class Catalog extends Component {
 
         const resultMeta = this.filterMeta ();
 
-        console.log (resultMeta);
-
         return (
             <div className="Catalog">
                 <Filter meta={this.state.meta} />
