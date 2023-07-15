@@ -1,12 +1,15 @@
 import { useEffect, useState } from 'react'
+
 import Author from '../components/Author.js'
+
 import "../styles/authors.css"
+import { APIPATH } from '../components/Variable';
 
 export default function Authors () {
     const [ info, setInfo ] = useState (null);
 
     useEffect (() => {
-        fetch ("http://api.moonless.space/authors").then (response => response.json()).then ( (data) => {
+        fetch (APIPATH + "/authors").then (response => response.json()).then ( (data) => {
             setInfo (data);
         })
     }, []);

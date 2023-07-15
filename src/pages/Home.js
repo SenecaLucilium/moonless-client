@@ -1,20 +1,20 @@
 import Post from "../components/Post"
 import { useEffect, useState } from 'react';
 
-import "../styles/home.css"
+import "../styles/home.css";
+import { APIPATH } from "../components/Variable";
 
 export default function Home () {
     const [ meta, setMeta ] = useState (null);
 
     useEffect (() => {
         try {
-            // fetch ("/").then ( (response) => { console.log (response) } );
-            fetch ("http://api.moonless.space").then (response => response.json()).then ( (data) => {
+            fetch (APIPATH).then (response => response.json()).then ( (data) => {
                 setMeta (data);
             })
         }
         catch (e) {
-            console.log (e);
+            console.log ( "Error at fetching homepath: " + e);
         }
         
     }, []);

@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import ReactMarkdown from 'react-markdown';
 
 import "../styles/article.css"
+import { APIPATH } from '../components/Variable';
 
 export default function Article (props) {
     const { id } = useParams ();
@@ -11,15 +12,15 @@ export default function Article (props) {
     const [ content, setContent ] = useState (null);
 
     useEffect ( () => {
-        fetch ("http://api.moonless.space/article/" + id).then ( (response) => (response.json()) ).then ( (jsonRes) => {
+        fetch ( APIPATH + "/article/" + id).then ( (response) => (response.json()) ).then ( (jsonRes) => {
             setMeta (jsonRes.meta);
             setContent (jsonRes.content);
         }).catch ( (err) => {
-            console.log ("Error at fetching an article: " + err);
+            console.log ("Error at fetching articlepath: " + err);
         })
     }, [])
 
-    if (meta == null && content == null) return null;
+    if (meta == null || content == null) return null;
 
     let spanTags = [];
     for (const tag of meta.tags) {

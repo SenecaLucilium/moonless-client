@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 
+import { WEBSITEPATH } from './Variable';
+
 class Author extends Component {
     constructor (props) {
         super (props)
@@ -16,7 +18,7 @@ class Author extends Component {
 
     render () {
         if (this.props === null) return null;
-        const authorLink = "http://www.moonless.space/catalog?sort=up&author=" + this.state.id;
+        const authorLink = WEBSITEPATH + "/catalog?sort=up&author=" + this.state.id;
 
         let otherLinks = [];
         for (const link of this.state.otherLinks) {
@@ -27,12 +29,11 @@ class Author extends Component {
 
         return (
             <div class="author-card">
-                <img class='author-avatar' src={this.state.avatar}></img>
+                <img class='author-avatar' src={this.state.avatar} alt="author-card"></img>
                 <div class='author-name'>
                     <a href={authorLink} >{this.state.name}</a>
                 </div>
                 
-                {/* <h3 class='author-name'>{this.state.name}</h3> */}
                 <div class='author-icons'>
                     <a href={this.state.boostyLink} class='boosty-icon' target='_blank' rel="noopener noreferrer"></a>
                     <a href={this.state.telegramLink} class='telegram-icon' target='_blank' rel="noopener noreferrer"></a>

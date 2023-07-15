@@ -1,6 +1,8 @@
-import React, { useEffect, useState } from 'react';
-import Post from "../components/Post"
+import React, { useState } from 'react';
 import ReactPaginate from 'react-paginate';
+
+import Post from "../components/Post"
+
 import "../styles/pagination.css"
 
 function Items({ currentItems }) {

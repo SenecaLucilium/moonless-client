@@ -1,8 +1,10 @@
-import Filter from "../components/Filter"
-import CatalogList from "../components/CatalogList"
-import { Component } from 'react'
+import { Component } from 'react';
 
-import "../styles/catalog.css"
+import Filter from "../components/Filter";
+import CatalogList from "../components/CatalogList";
+
+import "../styles/catalog.css";
+import { APIPATH } from "../components/Variable";
 
 class Catalog extends Component {
     constructor (props) {
@@ -25,13 +27,13 @@ class Catalog extends Component {
             tags: []
         }
 
-        if (parsedUrl.searchParams.get ("sort") != null) {
+        if (parsedUrl.searchParams.get ("sort") !== null) {
             filterState.sort = parsedUrl.searchParams.get ("sort");
         }
-        if (parsedUrl.searchParams.get ("author") != null || parsedUrl.searchParams.get ("author") != "Все") {
+        if (parsedUrl.searchParams.get ("author") !== null || parsedUrl.searchParams.get ("author") !== "Все") {
             filterState.author = parsedUrl.searchParams.get ("author");
         }
-        if (parsedUrl.searchParams.getAll ("tags") != null) {
+        if (parsedUrl.searchParams.getAll ("tags") !== null) {
             filterState.tags = parsedUrl.searchParams.getAll ("tags");
         }
 
@@ -40,12 +42,12 @@ class Catalog extends Component {
 
     componentDidMount () {
         try{
-            fetch ("http://api.moonless.space/catalog").then (response => response.json()).then ( (data) => {
+            fetch (APIPATH + "/catalog").then (response => response.json()).then ( (data) => {
                 this.setState (this.fetchFilter (data));
             })
         }
         catch (e) {
-            console.log ("Error at displaying a catalog page: " + e);
+            console.log ("Error at fetching catalogpath: " + e);
         }
     }
 
@@ -54,12 +56,12 @@ class Catalog extends Component {
 
         let authorsMeta = [];
         for (const article of this.state.meta) {
-            if (this.state.author == null || this.state.author == article.author) {
+            if (this.state.author === null || this.state.author === article.author) {
                 authorsMeta.push (article);
             }
         }
 
-        if (this.state.tags.length == 0) {
+        if (this.state.tags.length === 0) {
             resultMeta = authorsMeta;
         }
         else {
@@ -83,7 +85,7 @@ class Catalog extends Component {
             return new Date (+b1[2], b1[1] - 1, +b1[0]) - new Date (+a1[2], a1[1] - 1, +a1[0]);
         })
 
-        if (this.state.sort == "down") {
+        if (this.state.sort === "down") {
             resultMeta = resultMeta.reverse();
         }
 

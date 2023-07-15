@@ -1,5 +1,7 @@
 import { Component } from 'react';
+
 import "../styles/filter.css";
+import { WEBSITEPATH } from './Variable';
 
 function CheckboxTagsList (props) {
     let checkboxList = [];
@@ -43,7 +45,7 @@ class Filter extends Component {
 
     sortButton () {
         const elemButton = document.getElementById ("sortButton");
-        if (elemButton.innerText == "Сначала новые") {
+        if (elemButton.innerText === "Сначала новые") {
             elemButton.innerText = "Сначала старые";
             this.setState ( { reverse: true } );
         }
@@ -54,7 +56,7 @@ class Filter extends Component {
     }
 
     applyFilters () {
-        let filterURL = new URL ("http://www.moonless.space/catalog");
+        let filterURL = new URL (WEBSITEPATH + "/catalog");
         
         if (this.state.reverse) filterURL.searchParams.append ("sort", "down");
         else filterURL.searchParams.append ("sort", "up");
@@ -74,7 +76,7 @@ class Filter extends Component {
         const authorElems = hiddenTags[1].getElementsByTagName ("input");
 
         for (const elem of authorElems) {
-            if (elem.checked === true && elem.id != "All") {
+            if (elem.checked === true && elem.id !== "All") {
                 filterURL.searchParams.append ("author", elem.id);
                 break;
             }
@@ -90,7 +92,7 @@ class Filter extends Component {
         for (const article of this.props.meta) {
             let flagIncludes = false;
             for (const author of fetchAuthors) {
-                if (author.id == article.author) {
+                if (author.id === article.author) {
                     flagIncludes = true;
                     break;
                 }
@@ -102,6 +104,7 @@ class Filter extends Component {
 
         let fetchSet = new Set (fetchTags);
         fetchTags = Array.from (fetchSet);
+        fetchTags = fetchTags.sort();
 
         return (
             <div class="filter">

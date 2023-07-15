@@ -1,10 +1,12 @@
-import React from 'react'
-import "../styles/post.css"
+import React from 'react';
+
+import "../styles/post.css";
+import { WEBSITEPATH } from './Variable';
 
 function Post (props) {
     if (props.meta === undefined) return null;
 
-    const articleLink = 'http://www.moonless.space/article/' + props.meta.id;
+    const articleLink = WEBSITEPATH + '/article/' + props.meta.id;
 
     let tagsList = []
     for (const tag of props.meta.tags) {
@@ -14,7 +16,7 @@ function Post (props) {
     return (
         <div class="post-card">
             <div class="post-card-image">
-                <img src={props.meta.coverImage}></img>
+                <img src={props.meta.coverImage} alt="post-card"></img>
             </div>
             <div class="post-card-info">
                 <div class="post-card-tags">
