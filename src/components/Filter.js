@@ -8,7 +8,22 @@ function CheckboxTagsList (props) {
 
     for (const tag of props.tags) {
         checkboxList.push (
-            <label><input type="checkbox" name={tag} id={tag} />{tag}</label>
+            <label key={tag}><input type="checkbox" name={tag} id={tag} />{tag}</label>
+        );
+    }
+    return (
+        <div class="tag-options">
+            {checkboxList}
+        </div>
+    )
+}
+
+function CheckboxCountriesList (props) {
+    let checkboxList = [];
+
+    for (const country of props.countries) {
+        checkboxList.push (
+            <label key={country}><input type="checkbox" name={country} id={country} />{country}</label>
         );
     }
     return (
@@ -23,7 +38,7 @@ function RadioAuthorsList (props) {
 
     for (const author of props.authors) {
         radioList.push (
-            <label><input type="radio" name="author" value={author.id} id={author.id} />{author.realName}</label>
+            <label key={author.id}><input type="radio" name="author" value={author.id} id={author.id} />{author.realName}</label>
         )   
     }
 
@@ -37,28 +52,59 @@ function RadioAuthorsList (props) {
 class Filter extends Component {
     constructor (props) {
         super (props);
+    }
 
-        this.state = {
-            reverse: false
-        };
+    componentDidMount () {
+        if (this.props.filter.sort === "down") {
+            this.sortButton ();
+        }
+
+        const hiddenTags = document.getElementsByClassName ("select-tag");
+
+        hiddenTags[0].style.display = 'inline-block';
+        const tagElems = hiddenTags[0].getElementsByTagName ("input");
+
+        for (const elem of tagElems) {
+            for (const tag of this.props.filter.tags) {
+                if (tag === elem.id) elem.checked = true;
+            }
+        }
+
+        hiddenTags[1].style.display = 'inline-blocks';
+        const countryElems = hiddenTags[1].getElementsByTagName ("input");
+
+        for (const elem of countryElems) {
+            for (const country of this.props.filter.countries) {
+                if (country === elem.id) elem.checked = true;
+            }
+        }
+
+        hiddenTags[2].style.display = 'inline-blocks';
+        const authorElems = hiddenTags[2].getElementsByTagName ("input");
+
+        for (const elem of authorElems) {
+            if (this.props.filter.author == elem.id) elem.checked = true;
+        }
     }
 
     sortButton () {
+        console.log ('nah');
         const elemButton = document.getElementById ("sortButton");
         if (elemButton.innerText === "Сначала новые") {
+            console.log ("that")
             elemButton.innerText = "Сначала старые";
-            this.setState ( { reverse: true } );
         }
-        else { 
+        else {
+            console.log ("this")
             elemButton.innerText = "Сначала новые";
-            this.setState ( { reverse: false } );
         }
     }
 
     applyFilters () {
         let filterURL = new URL (WEBSITEPATH + "/catalog");
-        
-        if (this.state.reverse) filterURL.searchParams.append ("sort", "down");
+
+        const elemButton = document.getElementById ("sortButton");
+        if (elemButton.innerText === "Сначала старые") filterURL.searchParams.append ("sort", "down");
         else filterURL.searchParams.append ("sort", "up");
 
         const hiddenTags = document.getElementsByClassName ("select-tag");
@@ -73,7 +119,16 @@ class Filter extends Component {
         }
 
         hiddenTags[1].style.display = 'inline-blocks';
-        const authorElems = hiddenTags[1].getElementsByTagName ("input");
+        const countryElems = hiddenTags[1].getElementsByTagName ("input");
+
+        for (const elem of countryElems) {
+            if (elem.checked === true) {
+                filterURL.searchParams.append ("countries", elem.id);
+            }
+        }
+
+        hiddenTags[2].style.display = 'inline-blocks';
+        const authorElems = hiddenTags[2].getElementsByTagName ("input");
 
         for (const elem of authorElems) {
             if (elem.checked === true && elem.id !== "All") {
@@ -88,8 +143,9 @@ class Filter extends Component {
     render () {
         let fetchAuthors = [ { id: "All", realName: "Все" } ];
         let fetchTags = [];
+        let fetchCountries = [];
 
-        for (const article of this.props.meta) {
+        for (const article of this.props.filter.meta) {
             let flagIncludes = false;
             for (const author of fetchAuthors) {
                 if (author.id === article.author) {
@@ -100,11 +156,16 @@ class Filter extends Component {
             if (!flagIncludes) fetchAuthors.push ( { id: article.author, realName: article.realName } )
             
             fetchTags = fetchTags.concat (article.tags);
+            fetchCountries = fetchCountries.concat (article.country);
         }
 
         let fetchSet = new Set (fetchTags);
         fetchTags = Array.from (fetchSet);
         fetchTags = fetchTags.sort();
+
+        fetchSet = new Set (fetchCountries);
+        fetchCountries = Array.from (fetchSet);
+        fetchCountries = fetchCountries.sort();
 
         return (
             <div class="filter">
@@ -121,6 +182,14 @@ class Filter extends Component {
                     </div>
                 </div>
 
+                <div class="filter-section">
+                    <label for="tag-select">Страны:</label>
+                    <div class="select-tag">
+                        <div class="selected-tags">Выберите страны</div>
+                        <CheckboxCountriesList countries={fetchCountries} />
+                    </div>
+                </div>
+
 
                 <div class="filter-section">
                     <label for="tag-select">Автор:</label>
@@ -133,7 +202,7 @@ class Filter extends Component {
 
                 <div class="filter-section">
                     <div class="filter-container">
-                        <label>Количество статей: {this.props.meta.length}</label>
+                        <label>Количество статей: {this.props.filter.meta.length}</label>
                         <label>Количество авторов: {fetchAuthors.length - 1}</label>
                         <label>Количество тегов: {fetchTags.length}</label>
                     </div>

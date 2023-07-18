@@ -25,19 +25,40 @@
     flex: 1 1 auto;
 }
 
-.post-card-tags {
+.post-card-filters {
     display: flex;
     flex-wrap: wrap;
     margin-bottom: 5px;
 }
 
+/* .post-card-tags {
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 5px;
+} */
+
 .post-card-tags span {
-    background-color: #ccc;
-    color: #fff;
-    font-size: 12px;
-    padding: 2px 5px;
-    border-radius: 3px;
-    margin-right: 5px;
+    display: inline-block;
+    background-color: rgb(198, 226, 43);
+    color: black;
+    padding: 5px 10px;
+    margin-right: 10px;
+    border-radius: 4px;
+}
+
+/* .post-card-countries {
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 5px;
+} */
+
+.post-card-countries span {
+    display: inline-block;
+    background-color: rgb(198, 226, 43);
+    color: black;
+    padding: 5px 10px;
+    margin-right: 10px;
+    border-radius: 4px;
 }
 
 .post-card-title {

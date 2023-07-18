@@ -9,7 +9,7 @@ function Items({ currentItems }) {
     return (
         <div className="CurrentItems">
             {currentItems && currentItems.map((item) => (
-                <Post meta={item} />
+                <Post meta={item} key={item.id}/>
             ))}
         </div>
     );

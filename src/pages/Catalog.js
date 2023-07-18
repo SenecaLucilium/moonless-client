@@ -14,7 +14,8 @@ class Catalog extends Component {
             meta: null,
             sort: "up",
             author: null,
-            tags: null
+            tags: null,
+            countries: null
         }
     }
 
@@ -24,7 +25,8 @@ class Catalog extends Component {
             meta: meta,
             sort: "up",
             author: null,
-            tags: []
+            tags: [],
+            countries: []
         }
 
         if (parsedUrl.searchParams.get ("sort") !== null) {
@@ -35,6 +37,9 @@ class Catalog extends Component {
         }
         if (parsedUrl.searchParams.getAll ("tags") !== null) {
             filterState.tags = parsedUrl.searchParams.getAll ("tags");
+        }
+        if (parsedUrl.searchParams.getAll ("countries") !== null) {
+            filterState.countries = parsedUrl.searchParams.getAll ("countries");
         }
 
         return filterState;
@@ -60,9 +65,10 @@ class Catalog extends Component {
                 authorsMeta.push (article);
             }
         }
-
+        
+        let afterTagsMeta = [];
         if (this.state.tags.length === 0) {
-            resultMeta = authorsMeta;
+            afterTagsMeta = authorsMeta;
         }
         else {
             let tagsMeta = [];
@@ -71,8 +77,23 @@ class Catalog extends Component {
                     if (article.tags.includes (tag)) tagsMeta.push (article);
                 }
 
-                resultMeta = resultMeta.concat (tagsMeta);
+                afterTagsMeta = afterTagsMeta.concat (tagsMeta);
                 tagsMeta = [];
+            }
+        }
+
+        if (this.state.countries.length === 0) {
+            resultMeta = afterTagsMeta;
+        }
+        else {
+            let countriesMeta = [];
+            for (const country of this.state.countries) {
+                for (const article of afterTagsMeta) {
+                    if (article.country.includes (country)) countriesMeta.push (article);
+                }
+
+                resultMeta = resultMeta.concat (countriesMeta);
+                countriesMeta = [];
             }
         }
 
@@ -96,10 +117,10 @@ class Catalog extends Component {
         if (this.state.meta === null) return null;
 
         const resultMeta = this.filterMeta ();
-
+        document.title = "Каталог";
         return (
             <div className="Catalog">
-                <Filter meta={this.state.meta} />
+                <Filter filter={this.state}/>
                 <CatalogList meta={resultMeta} />
             </div>
         )

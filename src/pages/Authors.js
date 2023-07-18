@@ -18,8 +18,10 @@ export default function Authors () {
 
     let variableList = [];
     for (const author of info) {
-        variableList.push (<Author info={author} />)
+        variableList.push (<Author info={author} key={author.id}/>)
     }
+
+    document.title = "Авторы";
 
     return (
         <div class='author-page'>

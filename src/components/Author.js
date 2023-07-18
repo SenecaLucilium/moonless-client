@@ -23,7 +23,7 @@ class Author extends Component {
         let otherLinks = [];
         for (const link of this.state.otherLinks) {
             otherLinks.push (
-                <a href={link}>{link}</a>
+                <a key={link} href={link}>{link}</a>
             )
         }
 
