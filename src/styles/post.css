@@ -81,3 +81,10 @@
     color: #666;
     text-align: right;
 }
+
+.post-card-views {
+    font-size: 14px;
+    color: #666;
+    text-align: right;
+    padding-left: 10px;
+}

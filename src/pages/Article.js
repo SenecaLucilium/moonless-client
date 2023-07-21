@@ -34,6 +34,7 @@ export default function Article (props) {
     }
 
     document.title = meta.name;
+    console.log (meta.views);
 
     return (
         <div class="article-page">
@@ -50,6 +51,7 @@ export default function Article (props) {
                 <div class='article-author-date'>
                     <span class='article-author'>{meta.realName}</span>
                     <span class='article-date'>{meta.date}</span>
+                    <span class='article-views'>Просмотров: {meta.views}</span>
                 </div>
             </div>
             <div class='article-content'>

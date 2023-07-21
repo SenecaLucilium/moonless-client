@@ -37,6 +37,7 @@ function Post (props) {
                 <div class="post-card-author-date">
                     <span class="post-card-author">{props.meta.realName}</span>
                     <span class="post-card-date">{props.meta.date}</span>
+                    <span class="post-card-views">Просмотров: {props.meta.views}</span>
                 </div>
             </div>
         </div>
