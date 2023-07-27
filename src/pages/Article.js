@@ -30,7 +30,7 @@ export default function Article (props) {
     }
     let spanCountires = [];
     for (const country of meta.country) {
-        spanCountires.push (<a className="article-meta-country-link" href={catalogLink + "countries=" + country} key={country}><span className="article-meta-country-tag">{country}</span></a>)
+        spanCountires.push (<a className="article-meta-country-link" href={catalogLink + "country=" + country} key={country}><span className="article-meta-country-tag">{country}</span></a>)
     }
 
     document.title = meta.name;

@@ -15,7 +15,7 @@ function Post (props) {
     }
     let countriesList = []
     for (const country of props.meta.country) {
-        countriesList.push (<a className="post-country-link" href={catalogLink + "countries=" + country} key={"post-"+country}><span className="post-country-tag">{country}</span></a>)
+        countriesList.push (<a className="post-country-link" href={catalogLink + "country=" + country} key={"post-"+country}><span className="post-country-tag">{country}</span></a>)
     }
 
     return (
