@@ -1,12 +1,6 @@
-@media (max-width: 767px) {
+@media (max-width: 1024px) {
     .main-part {
         width: 100%;
-    }
-}
-
-@media (min-width: 768px) and (max-width: 1024px) {
-    .main-part {
-        width: 70%;
     }
 }
 
