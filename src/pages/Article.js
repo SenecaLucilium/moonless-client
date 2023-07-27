@@ -34,7 +34,6 @@ export default function Article (props) {
     }
 
     document.title = meta.name;
-    console.log (meta.views);
 
     return (
         <div class="article">

@@ -80,30 +80,12 @@ class Filter extends Component {
             }
         }
 
-        console.log (this.props.filter);
-
         const countryElems = hiddenTags[2].getElementsByTagName ("input");
         for (const elem of countryElems) {
             for (const country of this.props.filter.countries) {
                 if (country === elem.id) elem.checked = true;
             }
         }
-        // const tagElems = hiddenTags[0].getElementsByTagName ("input");
-
-        // for (const elem of tagElems) {
-        //     for (const tag of this.props.filter.tags) {
-        //         if (tag === elem.id) elem.checked = true;
-        //     }
-        // }
-
-        // hiddenTags[1].style.display = 'inline-blocks';
-        // const countryElems = hiddenTags[1].getElementsByTagName ("input");
-
-        // for (const elem of countryElems) {
-        //     for (const country of this.props.filter.countries) {
-        //         if (country === elem.id) elem.checked = true;
-        //     }
-        // }
     }
 
     toggleFilter () {

@@ -86,8 +86,6 @@ class Catalog extends Component {
             }
         }
 
-        console.log (afterTagsMeta);
-
         if (this.state.countries.length === 0) {
             resultMeta = afterTagsMeta;
         }
