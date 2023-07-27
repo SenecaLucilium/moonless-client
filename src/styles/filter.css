@@ -97,6 +97,9 @@
     display: none;
     position: fixed;
 
+    max-height: 300px;
+    overflow-y: auto;
+
     top: 0;
     left: 0;
     z-index: 9999;
