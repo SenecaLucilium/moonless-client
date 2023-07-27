@@ -24,11 +24,11 @@ export default function Authors () {
     document.title = "Авторы";
 
     return (
-        <div class='author-page'>
-            <div class='author-message'>
+        <div className='authors-page'>
+            <div className='authors-message'>
                 <p>Не забывайте поддерживать авторов статей, публикуемых на сайте. Подписывайтесь на их ресурсы, кидайте донаты на бусти или другие сервисы.</p>
             </div>
-            <div class='author-list'>
+            <div className='authors-list'>
                 {variableList}
             </div>
         </div>

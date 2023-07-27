@@ -3,7 +3,6 @@ import { Component } from 'react';
 import Filter from "../components/Filter";
 import CatalogList from "../components/CatalogList";
 
-import "../styles/catalog.css";
 import { APIPATH } from "../components/Variable";
 
 class Catalog extends Component {
@@ -12,7 +11,8 @@ class Catalog extends Component {
 
         this.state = {
             meta: null,
-            sort: "up",
+            time: null,
+            views: null,
             author: null,
             tags: null,
             countries: null
@@ -23,14 +23,18 @@ class Catalog extends Component {
         const parsedUrl = new URL (window.location.href);
         let filterState = {
             meta: meta,
-            sort: "up",
+            time: null,
+            views: null,
             author: null,
             tags: [],
             countries: []
         }
 
-        if (parsedUrl.searchParams.get ("sort") !== null) {
-            filterState.sort = parsedUrl.searchParams.get ("sort");
+        if (parsedUrl.searchParams.get ("time") !== null) {
+            filterState.time = parsedUrl.searchParams.get ("time");
+        }
+        if (parsedUrl.searchParams.get ("views") !== null) {
+            filterState.views = parsedUrl.searchParams.get ("views");
         }
         if (parsedUrl.searchParams.get ("author") !== null || parsedUrl.searchParams.get ("author") !== "Все") {
             filterState.author = parsedUrl.searchParams.get ("author");
@@ -38,8 +42,8 @@ class Catalog extends Component {
         if (parsedUrl.searchParams.getAll ("tags") !== null) {
             filterState.tags = parsedUrl.searchParams.getAll ("tags");
         }
-        if (parsedUrl.searchParams.getAll ("countries") !== null) {
-            filterState.countries = parsedUrl.searchParams.getAll ("countries");
+        if (parsedUrl.searchParams.getAll ("country") !== null) {
+            filterState.countries = parsedUrl.searchParams.getAll ("country");
         }
 
         return filterState;
@@ -100,14 +104,25 @@ class Catalog extends Component {
         let resultSet = new Set (resultMeta);
         resultMeta = Array.from (resultSet);
 
-        resultMeta.sort ( (a, b) => {
-            let a1 = a.date.split(".");
-            let b1 = b.date.split(".");
-            return new Date (+b1[2], b1[1] - 1, +b1[0]) - new Date (+a1[2], a1[1] - 1, +a1[0]);
-        })
+        if (this.state.time !== null || this.state.views === null) {
+            resultMeta.sort ( (a, b) => {
+                let a1 = a.date.split(".");
+                let b1 = b.date.split(".");
+                return new Date (+b1[2], b1[1] - 1, +b1[0]) - new Date (+a1[2], a1[1] - 1, +a1[0]);
+            })
 
-        if (this.state.sort === "down") {
-            resultMeta = resultMeta.reverse();
+            if (this.state.time === "down") {
+                resultMeta = resultMeta.reverse();
+            }
+        }
+        else {
+            resultMeta.sort ( (a, b) => {
+                return b.views - a.views;
+            })
+
+            if (this.state.views === 'down') {
+                resultMeta = resultMeta.reverse();
+            }
         }
 
         return resultMeta;

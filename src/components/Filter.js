@@ -12,7 +12,7 @@ function CheckboxTagsList (props) {
         );
     }
     return (
-        <div class="tag-options">
+        <div className="filter-select-options">
             {checkboxList}
         </div>
     )
@@ -27,7 +27,7 @@ function CheckboxCountriesList (props) {
         );
     }
     return (
-        <div class="tag-options">
+        <div className="filter-select-options">
             {checkboxList}
         </div>
     )
@@ -43,7 +43,7 @@ function RadioAuthorsList (props) {
     }
 
     return (
-        <div class="tag-options">
+        <div className="filter-select-options">
             {radioList}
         </div>
     )
@@ -55,47 +55,98 @@ class Filter extends Component {
     }
 
     componentDidMount () {
-        if (this.props.filter.sort === "down") {
-            this.sortButton ();
+        if (this.props.filter.time === "down") {
+            this.timeFilter ();
+        }
+        else if (this.props.filter.views === "up") {
+            this.viewsFilter ();
+        }
+        else if (this.props.filter.views === "down") {
+            this.viewsFilter ();
+            this.viewsFilter ();
         }
 
-        const hiddenTags = document.getElementsByClassName ("select-tag");
+        const hiddenTags = document.getElementsByClassName ("filter-select-options");
 
-        hiddenTags[0].style.display = 'inline-block';
-        const tagElems = hiddenTags[0].getElementsByTagName ("input");
+        const authorElems = hiddenTags[0].getElementsByTagName ("input");
+        for (const elem of authorElems) {
+            if (this.props.filter.author === elem.id) elem.checked = true;
+        }
 
+        const tagElems = hiddenTags[1].getElementsByTagName ("input");
         for (const elem of tagElems) {
             for (const tag of this.props.filter.tags) {
                 if (tag === elem.id) elem.checked = true;
             }
         }
 
-        hiddenTags[1].style.display = 'inline-blocks';
-        const countryElems = hiddenTags[1].getElementsByTagName ("input");
+        console.log (this.props.filter);
 
+        const countryElems = hiddenTags[2].getElementsByTagName ("input");
         for (const elem of countryElems) {
             for (const country of this.props.filter.countries) {
                 if (country === elem.id) elem.checked = true;
             }
         }
+        // const tagElems = hiddenTags[0].getElementsByTagName ("input");
 
-        hiddenTags[2].style.display = 'inline-blocks';
-        const authorElems = hiddenTags[2].getElementsByTagName ("input");
+        // for (const elem of tagElems) {
+        //     for (const tag of this.props.filter.tags) {
+        //         if (tag === elem.id) elem.checked = true;
+        //     }
+        // }
 
-        for (const elem of authorElems) {
-            if (this.props.filter.author == elem.id) elem.checked = true;
+        // hiddenTags[1].style.display = 'inline-blocks';
+        // const countryElems = hiddenTags[1].getElementsByTagName ("input");
+
+        // for (const elem of countryElems) {
+        //     for (const country of this.props.filter.countries) {
+        //         if (country === elem.id) elem.checked = true;
+        //     }
+        // }
+    }
+
+    toggleFilter () {
+        const filterBlock = document.getElementById ("filterBlock");
+        const filterButtonText = document.getElementById ("filterButtonText");
+        const filterButtonIcon = document.getElementById ("filterButtonIcon");
+
+        if (filterBlock.style.display === "flex") {
+            filterBlock.style.display = "none";
+            filterButtonText.innerText = "Фильтр";
+            filterButtonIcon.src = "https://images.freeimages.com/fic/images/icons/2232/wireframe_mono/48/filter.png";
+        }
+        else {
+            filterBlock.style.display = "flex";
+            filterButtonText.innerText = "Закрыть";
+            filterButtonIcon.src = "https://images.freeimages.com/fic/images/icons/2232/wireframe_mono/48/delete.png";
         }
     }
 
-    sortButton () {
-        console.log ('nah');
-        const elemButton = document.getElementById ("sortButton");
-        if (elemButton.innerText === "Сначала новые") {
-            console.log ("that")
+    viewsFilter () {
+        const elemButton = document.getElementById ("sortViewsButton");
+        if (elemButton.innerText === "Неактивна") {
+            elemButton.innerText = "Сначала популярные";
+            document.getElementById ("sortTimeButton").innerText = "Неактивна";
+        }
+        else if (elemButton.innerText === "Сначала популярные") {
+            elemButton.innerText = "Сначала непопулярные";
+        }
+        else {
+            elemButton.innerText = "Сначала популярные";
+        }
+    }
+
+    timeFilter () {
+        const elemButton = document.getElementById ("sortTimeButton");
+        if (elemButton.innerText === "Неактивна") {
+            elemButton.innerText = "Сначала новые";
+            document.getElementById ("sortViewsButton").innerText = "Неактивна";
+        }
+        else if (elemButton.innerText === "Сначала новые") {
             elemButton.innerText = "Сначала старые";
         }
         else {
-            console.log ("this")
             elemButton.innerText = "Сначала новые";
         }
     }
@@ -103,37 +154,35 @@ class Filter extends Component {
     applyFilters () {
         let filterURL = new URL (WEBSITEPATH + "/catalog");
 
-        const elemButton = document.getElementById ("sortButton");
-        if (elemButton.innerText === "Сначала старые") filterURL.searchParams.append ("sort", "down");
-        else filterURL.searchParams.append ("sort", "up");
+        const elemTimeButton = document.getElementById ("sortTimeButton");
+        if (elemTimeButton.innerText === "Сначала старые") filterURL.searchParams.append ("time", "down");
+        else if (elemTimeButton.innerText === "Сначала новые") filterURL.searchParams.append ("time", "up");
 
-        const hiddenTags = document.getElementsByClassName ("select-tag");
+        const elemViewsButton = document.getElementById ("sortViewsButton");
+        if (elemViewsButton.innerText === "Сначала непопулярные") filterURL.searchParams.append ("views", "down");
+        else if (elemViewsButton.innerText === "Сначала популярные")filterURL.searchParams.append ("views", "up");
 
-        hiddenTags[0].style.display = 'inline-blocks';
-        const tagElems = hiddenTags[0].getElementsByTagName ("input");
+        const hiddenTags = document.getElementsByClassName ("filter-select-options");
+        
+        const authorElems = hiddenTags[0].getElementsByTagName ("input");
+        for (const elem of authorElems) {
+            if (elem.checked === true && elem.id !== "All") {
+                filterURL.searchParams.append ("author", elem.id);
+                break;
+            }
+        }
 
+        const tagElems = hiddenTags[1].getElementsByTagName ("input");
         for (const elem of tagElems) {
             if (elem.checked === true) {
                 filterURL.searchParams.append ("tags", elem.id);
             }
         }
 
-        hiddenTags[1].style.display = 'inline-blocks';
-        const countryElems = hiddenTags[1].getElementsByTagName ("input");
-
+        const countryElems = hiddenTags[2].getElementsByTagName ("input");
         for (const elem of countryElems) {
             if (elem.checked === true) {
-                filterURL.searchParams.append ("countries", elem.id);
-            }
-        }
-
-        hiddenTags[2].style.display = 'inline-blocks';
-        const authorElems = hiddenTags[2].getElementsByTagName ("input");
-
-        for (const elem of authorElems) {
-            if (elem.checked === true && elem.id !== "All") {
-                filterURL.searchParams.append ("author", elem.id);
-                break;
+                filterURL.searchParams.append ("country", elem.id);
             }
         }
 
@@ -168,43 +217,26 @@ class Filter extends Component {
         fetchCountries = fetchCountries.sort();
 
         return (
-            <div class="filter">
-                <div class="filter-section">
-                    <label>Порядок сортировки:</label>
-                    <button class="filter-button" onClick={ () => { this.sortButton() } } id="sortButton">Сначала новые</button>
-                </div>
-
-                <div class="filter-section">
-                    <label for="tag-select">Теги:</label>
-                    <div class="select-tag">
-                        <div class="selected-tags">Выберите теги</div>
-                        <CheckboxTagsList tags={fetchTags} />
-                    </div>
-                </div>
-
-                <div class="filter-section">
-                    <label for="tag-select">Страны:</label>
-                    <div class="select-tag">
-                        <div class="selected-tags">Выберите страны</div>
-                        <CheckboxCountriesList countries={fetchCountries} />
-                    </div>
-                </div>
-
-
-                <div class="filter-section">
-                    <label for="tag-select">Автор:</label>
-                    <div class="select-tag">
-                        <div class="selected-tags">Выберите автора</div>
+            <div className="filter">
+                <button className="filter-button" onClick={ () => { this.toggleFilter() } }>
+                    <span className="filter-button-text" id="filterButtonText">Фильтр</span>
+                    <img className="filter-button-icon" id="filterButtonIcon" src="https://images.freeimages.com/fic/images/icons/2232/wireframe_mono/48/filter.png" alt="Фильтр"></img>
+                </button>
+                <div className="filter-block" id="filterBlock">
+                    <button className="filter-accept-button" onClick={ () => { this.applyFilters() } }>Применить</button>
+                    <button className="filter-sort-button" onClick={ () => { this.timeFilter() } } id="sortTimeButton">Сначала новые</button>
+                    <button className="filter-sort-button" onClick={() => { this.viewsFilter() } } id="sortViewsButton">Неактивна</button>
+                    <div className="filter-select">
+                        <div className="filter-select-label">Выберите автора</div>
                         <RadioAuthorsList authors={fetchAuthors} />
                     </div>
-                </div>
-                <button class="apply-button" onClick={ () => { this.applyFilters() } } type="button" id="applyButton">Применить фильтры</button>
-
-                <div class="filter-section">
-                    <div class="filter-container">
-                        <label>Количество статей: {this.props.filter.meta.length}</label>
-                        <label>Количество авторов: {fetchAuthors.length - 1}</label>
-                        <label>Количество тегов: {fetchTags.length}</label>
+                    <div className="filter-select">
+                        <div className="filter-select-label">Выберите теги</div>
+                        <CheckboxTagsList tags={fetchTags }/>
+                    </div>
+                    <div className="filter-select">
+                        <div className="filter-select-label">Выберите страны</div>
+                        <CheckboxCountriesList countries={fetchCountries} />
                     </div>
                 </div>
             </div>

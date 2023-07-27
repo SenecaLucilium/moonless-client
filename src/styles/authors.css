@@ -1,86 +1,63 @@
-.author-message {
-    border: 1px solid #ccc;
+.authors-message {
+    border: 1px solid;
     border-radius: 8px;
-    background-color: #cfdde0;
+
+    background-color: #f5f5f5;
     padding: 10px;
     font-size: 16px;
     margin-bottom: 10px;
 }
 
-.author-list {
-    display: flex;
-    flex-wrap: wrap;
-    padding: 10px;
-}
-  
-.author-card {
-    flex-basis: calc(20% - 10px);
+.author {
     margin-bottom: 10px;
-    margin-top: 10px;
     padding: 10px;
-    border: 1px solid #ccc;
+  
+    border: 1px solid;
     border-radius: 8px;
-    text-align: center;
-    background-color: #cfdde0;
+  
+    background-color: #f5f5f5;
+  
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
   
-.author-avatar {
-    width: 100px;
-    height: 100px;
-    border-radius: 30%;
-    object-fit: cover;
-    margin-bottom: 10px;
+.author-info {
+    flex: 1;
+    display: flex;
+    align-items: center;
 }
   
 .author-name {
-    margin-bottom: 10px;
-}
-  
-.author-name a {
-    font-size: 16px;
+    font-size: 24px;
     font-weight: bold;
-    color: #333;
     text-decoration: none;
+    color: #333;
+    margin-right: 10px;
 }
-  
-.author-name a:hover {
-    text-decoration: underline;
+
+.author-alternative-link {
+    font-size: 14px;
+    color: #777;
 }
-  
-.author-icons {
+
+.author-counters {
     display: flex;
-    justify-content: center;
-    margin-bottom: 10px;
 }
   
-.author-icons a {
-    display: inline-block;
-    width: 30px;
-    height: 30px;
-    margin: 0 5px;
-    background-repeat: no-repeat;
-    background-size: cover;
+.author-counter {
+    display: flex;
+    align-items: center;
+    margin-right: 20px;
 }
   
-.boosty-icon {
-    background-image: url('./boosty-icon.png');
+.author-counter img {
+    width: 20px;
+    height: 20px;
+    margin-right: 5px;
 }
   
-.telegram-icon {
-    background-image: url('./telegram-icon.png');
-}
-  
-.author-links a {
-    display: block;
-    margin-bottom: 5px;
-}
-  
-@media screen and (max-width: 992px) {
-    .author-card {
-        flex-basis: calc(45% - 10px);
-    }
-    .author-list {
-        justify-content: space-around;
-    }
+.counter span {
+    color: #777;
 }
   

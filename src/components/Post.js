@@ -11,34 +11,29 @@ function Post (props) {
 
     let tagsList = []
     for (const tag of props.meta.tags) {
-        tagsList.push (<a href={catalogLink + "tags=" + tag} key={"post-"+tag}><span>{tag}</span></a>);
+        tagsList.push (<a className="post-tag-link" href={catalogLink + "tags=" + tag} key={"post-"+tag}><span className="post-tag">{tag}</span></a>);
     }
     let countriesList = []
     for (const country of props.meta.country) {
-        countriesList.push (<a href={catalogLink + "countries=" + country} key={"post-"+country}><span>{country}</span></a>)
+        countriesList.push (<a className="post-country-link" href={catalogLink + "countries=" + country} key={"post-"+country}><span className="post-country-tag">{country}</span></a>)
     }
 
     return (
-        <div class="post-card">
-            <div class="post-card-image">
-                <img src={props.meta.coverImage} alt="post-card"></img>
+        <div className="post">
+            <div className="post-info">
+                <div className="post-views">
+                    <img src="https://images.freeimages.com/fic/images/icons/2232/wireframe_mono/48/eye.png" alt="Просмотры"></img>
+                    <span className="post-view-count">{props.meta.views}</span>
+                </div>
+                <div className="post-author">{props.meta.realName}</div>
+                <div className="post-date">{props.meta.date}</div>
             </div>
-            <div class="post-card-info">
-                <div class="post-card-filters">
-                    <div class="post-card-tags">
-                        {tagsList}
-                    </div>
-                    <div class="post-card-countries">
-                        {countriesList}
-                    </div>
+            <div className="post-title">
+                <div className="post-tags">
+                    {tagsList}
+                    {countriesList}
                 </div>
-                
-                <a class="post-card-title" href={articleLink}>{props.meta.name}</a>
-                <div class="post-card-author-date">
-                    <span class="post-card-author">{props.meta.realName}</span>
-                    <span class="post-card-date">{props.meta.date}</span>
-                    <span class="post-card-views">Просмотров: {props.meta.views}</span>
-                </div>
+                <a className="post-name" href={articleLink}>{props.meta.name}</a>
             </div>
         </div>
     )

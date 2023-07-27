@@ -26,35 +26,35 @@ export default function Article (props) {
 
     let spanTags = [];
     for (const tag of meta.tags) {
-        spanTags.push (<a href={catalogLink + "tags=" + tag} key={tag}><span>{tag}</span></a>)
+        spanTags.push (<a className="article-meta-tag-link" href={catalogLink + "tags=" + tag} key={tag}><span className="article-meta-tag">{tag}</span></a>)
     }
     let spanCountires = [];
     for (const country of meta.country) {
-        spanCountires.push (<a href={catalogLink + "countries=" + country} key={country}><span>{country}</span></a>)
+        spanCountires.push (<a className="article-meta-country-link" href={catalogLink + "countries=" + country} key={country}><span className="article-meta-country-tag">{country}</span></a>)
     }
 
     document.title = meta.name;
     console.log (meta.views);
 
     return (
-        <div class="article-page">
-            <div class='meta-info'>
-                <div class="post-card-filters">
-                    <div class="post-card-tags">
+        <div class="article">
+            <div class='article-meta'>
+                <div class="article-meta-filters">
+                    <div className="articles-meta-tags">
                         {spanTags}
-                    </div>
-                    <div class="post-card-countries">
                         {spanCountires}
                     </div>
                 </div>
-                <h1 class='article-title'>{meta.name}</h1>
-                <div class='article-author-date'>
-                    <span class='article-author'>{meta.realName}</span>
-                    <span class='article-date'>{meta.date}</span>
-                    <span class='article-views'>Просмотров: {meta.views}</span>
+                <h1 class='article-meta-title'>{meta.name}</h1>
+                <div class='article-meta-info'>
+                    <span class='article-meta-author'>{meta.realName}</span>
+                    <span class='article-meta-date'>{meta.date}</span>
+                    <img src="https://images.freeimages.com/fic/images/icons/2232/wireframe_mono/48/eye.png" alt="Просмотры"></img>
+                    <span className='article-meta-views'>{meta.views}</span>
+                    
                 </div>
             </div>
-            <div class='article-content'>
+            <div className='article-content'>
                 <ReactMarkdown children={content} />
             </div>
         </div>

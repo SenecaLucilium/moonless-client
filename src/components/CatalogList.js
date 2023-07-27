@@ -41,6 +41,7 @@ function CatalogList (props) {
                 pageCount={pageCount}
                 previousLabel="<"
                 renderOnZeroPageCount={null}
+                marginPagesDisplayed={1}
             />
         </div>
     );

@@ -2,8 +2,8 @@ import "../styles/header.css";
 
 export default function Header () {
     return (
-        <div class='header'>
-            <div class="headerImage"></div>
+        <div className='header'>
+            <div className="headerImage"></div>
             <nav id="navbar">
                 <ul>
                     <li><a href="/">Безлуние</a></li>

@@ -1,90 +1,100 @@
-.post-card {
-    flex-basis: 45%;
+.post {
+    margin-bottom: 10px;
+    padding: 10px;
+
+    border: 1px solid;
+    border-radius: 8px;
+
+    background-color: #f5f5f5;
+
     display: flex;
     align-items: center;
-    padding: 10px;
-    border: 1px solid #ccc;
-    margin-bottom: 10px;
-
-    border-radius: 8px;
-    background-color: #cfdde0;
 }
 
-.post-card-image {
-    flex: 0 0 auto;
-    margin-right: 10px;
+.post-info {
+    flex: 1;
+    padding-right: 10px;
+
+    min-width: 80px;
+
+    display: flex;
+    flex-direction: column;
 }
 
-.post-card-image img {
-    width: 100px;
-    height: auto;
-    object-fit: cover;
+.post-views {
+    display: flex;
+    color: #777;
+
+    padding: 3px;
 }
 
-.post-card-info {
-    flex: 1 1 auto;
+.post-views img {
+    width: 20px;
+    height: 20px;
+    margin-right: 5px;
 }
 
-.post-card-filters {
+.post-author, .post-date {
+    color: #777;
+    margin-bottom: 5px;
+}
+
+.post-title {
+    flex: 8;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.post-tags {
+    position: relative;
     display: flex;
     flex-wrap: wrap;
-    margin-bottom: 5px;
+    padding-bottom: 5px;
+
+    gap: 5px;
 }
 
-/* .post-card-tags {
-    display: flex;
-    flex-wrap: wrap;
-    margin-bottom: 5px;
-} */
-
-.post-card-tags span {
-    display: inline-block;
-    background-color: rgb(198, 226, 43);
-    color: black;
-    padding: 5px 10px;
-    margin-right: 10px;
-    border-radius: 4px;
+@media screen and (max-width: 768px) {
+    .post-tags {
+        gap: 10px;
+    }
 }
 
-/* .post-card-countries {
-    display: flex;
-    flex-wrap: wrap;
-    margin-bottom: 5px;
-} */
-
-.post-card-countries span {
-    display: inline-block;
-    background-color: rgb(198, 226, 43);
-    color: black;
-    padding: 5px 10px;
-    margin-right: 10px;
-    border-radius: 4px;
-}
-
-.post-card-title {
-    font-size: 18px;
-    font-weight: bold;
-    margin-bottom: 5px;
+.post-tag-link {
     text-decoration: none;
 }
 
-.post-card-author {
-    font-size: 14px;
-    color: #666;
-    padding-left: 10px;
-    padding-right: 10px;
+.post-country-link {
+    text-decoration: none;
+}
+
+.post-tag, .post-country-tag {
+    background-color: #000000;
+    color: white;
+
+    border-radius: 8px;
+    padding: 5px 10px;
+    margin-right: 5px;
+    margin-bottom: 5px;
+}
+
+.post-country-tag {
+    margin-left: 5px;
+}
+
+.post-name {
+    margin: 0;
+    margin-top: 5px;
+    
+    font-size: 20px;
     font-weight: bold;
+
+    text-decoration: none;
+    background-color: transparent;
+    color: inherit;
 }
 
-.post-card-date {
-    font-size: 14px;
-    color: #666;
-    text-align: right;
-}
-
-.post-card-views {
-    font-size: 14px;
-    color: #666;
-    text-align: right;
-    padding-left: 10px;
+.post-name:hover {
+    text-decoration: underline;
 }

@@ -29,7 +29,6 @@ export default function Home () {
                     Статьи публикуются с минимальной задержкой в месяц от времени публикации на ресурсе автора.
                 </p>
                 <p>Телеграмм канал -<a href="https://t.me/m00n1ess"> https://t.me/m00n1ess</a></p>
-                <p>Если вы хотите дополнить коллекцию статей или вы обнаружили ошибки на сайте, пишите - <a href="https://t.me/SenecaMoon"> https://t.me/SenecaMoon</a></p>
                 <p>Последние поступления на сайте:</p>
             </div>
             <div className="post-containter">

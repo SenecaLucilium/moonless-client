@@ -14,7 +14,7 @@ ul[role="navigation"][aria-label="Pagination"] {
   ul[role="navigation"][aria-label="Pagination"] li a {
     display: block;
     padding: 8px 16px;
-    background-color: #cfdde0;
+    background-color: #f5f5f5;
     color: #333;
     text-decoration: none;
     border-radius: 4px;
@@ -25,8 +25,8 @@ ul[role="navigation"][aria-label="Pagination"] {
   }
   
   ul[role="navigation"][aria-label="Pagination"] li.selected a {
-    background-color: #3388ff;
-    color: #fff;
+    background-color: #000000;
+    color: white;
   }
   
   ul[role="navigation"][aria-label="Pagination"] li.previous,

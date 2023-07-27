@@ -1,32 +1,44 @@
 .header {
+    border-radius: 8px;
+
     position: relative;
     margin-left: auto;
     margin-right: auto;
 }
 
-@media only screen and (max-width: 992px) {
+@media (max-width: 767px) {
     .header {
         width: 100%;
-        height: 200px;
+        height: 120px;
     }
     .headerImage {
-        /* height: 160px; */
-        height: 200px;
+        height: 120px;
     }
 }
 
-@media only screen and (min-width: 993px) {
+@media (min-width: 768px) and (max-width: 1024px) {
+    .header {
+        width: 70%;
+        height: 150px;
+    }
+    .headerImage {
+        height: 150px;
+    }
+}
+
+@media (min-width: 1025px) {
     .header {
         width: 50%;
         height: 150px;
     }
     .headerImage {
-        /* height: 110px; */
         height: 150px;
     }
 }
 
 .headerImage {
+    border-radius: 8px;
+
     background-image: url("../styles/broken-moon.jpg"); 
     width: 100%;
     background-repeat: no-repeat;

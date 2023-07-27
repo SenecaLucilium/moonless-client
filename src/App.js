@@ -10,7 +10,7 @@ import './styles/main.css'
 function App () {
 
   return (
-    <div class='main-part'>
+    <div className='main-part'>
       <BrowserRouter>
         <Routes>
           <Route index element = {<Home />} />
